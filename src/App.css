@@ -1,0 +1,10 @@
+/* Global app styles - minimal as we use Tailwind */
+* {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  * {
+    cursor: auto;
+  }
+}
