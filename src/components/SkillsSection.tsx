@@ -92,18 +92,17 @@ const SkillsSection = () => {
 
     // Title animation
     gsap.fromTo(title.children,
-      { opacity: 0, y: 80, rotateX: -45 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        rotateX: 0,
         duration: 1,
         stagger: 0.2,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: title,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -112,26 +111,24 @@ const SkillsSection = () => {
     const cardElements = cards.querySelectorAll('.skill-card');
     cardElements.forEach((card, i) => {
       const delay = i * 0.1;
-      
+
       gsap.fromTo(card,
-        { 
-          opacity: 0, 
-          y: 80,
-          scale: 0.9,
-          rotateY: -15,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          rotateY: 0,
           duration: 0.8,
           delay,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: cards,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -140,7 +137,7 @@ const SkillsSection = () => {
       const skillBars = card.querySelectorAll('.skill-progress');
       skillBars.forEach((bar, j) => {
         const level = bar.getAttribute('data-level') || '0';
-        
+
         gsap.fromTo(bar,
           { scaleX: 0 },
           {
@@ -166,7 +163,7 @@ const SkillsSection = () => {
           duration: 0.4,
           ease: 'power2.out',
         });
-        
+
         const icon = card.querySelector('.skill-icon');
         if (icon) {
           gsap.to(icon, {
@@ -186,7 +183,7 @@ const SkillsSection = () => {
           duration: 0.4,
           ease: 'power2.out',
         });
-        
+
         const icon = card.querySelector('.skill-icon');
         if (icon) {
           gsap.to(icon, {
@@ -213,7 +210,7 @@ const SkillsSection = () => {
           scrollTrigger: {
             trigger: softSkillsContainer,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -234,8 +231,8 @@ const SkillsSection = () => {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="skills"
       className="relative py-32 overflow-hidden"
     >
@@ -260,7 +257,7 @@ const SkillsSection = () => {
         {/* Skills Grid */}
         <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {technicalSkills.map((category, i) => (
-            <div 
+            <div
               key={category.category}
               className="skill-card card-gradient rounded-2xl p-6 perspective-1000 cursor-pointer"
             >
@@ -281,7 +278,7 @@ const SkillsSection = () => {
                       <span className="text-sm text-primary font-mono">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
-                      <div 
+                      <div
                         className="skill-progress"
                         data-level={skill.level}
                       />
@@ -300,7 +297,7 @@ const SkillsSection = () => {
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {softSkills.map((skill) => (
-              <div 
+              <div
                 key={skill.name}
                 className="soft-skill flex items-center gap-3 px-6 py-3 card-glass rounded-full hover:bg-primary/10 transition-colors duration-300 cursor-pointer"
                 data-cursor-hover

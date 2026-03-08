@@ -63,18 +63,17 @@ const ContactSection = () => {
 
     // Title animation
     gsap.fromTo(title.children,
-      { opacity: 0, y: 80, rotateX: -45 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        rotateX: 0,
         duration: 1,
         stagger: 0.2,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: title,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -93,7 +92,7 @@ const ContactSection = () => {
           scrollTrigger: {
             trigger: form,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -114,7 +113,7 @@ const ContactSection = () => {
           scrollTrigger: {
             trigger: info,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -154,7 +153,7 @@ const ContactSection = () => {
           scrollTrigger: {
             trigger: info,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -168,9 +167,9 @@ const ContactSection = () => {
     setSubmitStatus('idle');
 
     // Check if EmailJS is configured
-    if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || 
-        EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID' || 
-        EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+    if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' ||
+      EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID' ||
+      EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
       // Demo mode - simulate success
       await new Promise(resolve => setTimeout(resolve, 1500));
       toast({
@@ -255,8 +254,8 @@ const ContactSection = () => {
   };
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="contact"
       className="relative py-32 overflow-hidden"
     >
@@ -310,7 +309,7 @@ const ContactSection = () => {
                 />
               </div>
             </div>
-            
+
             <div className="form-field">
               <label className="block text-sm font-medium text-foreground/80 mb-2">Subject</label>
               <input
@@ -342,13 +341,12 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`magnetic-btn w-full px-8 py-4 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${
-                submitStatus === 'success' 
-                  ? 'bg-green-500 text-white' 
+              className={`magnetic-btn w-full px-8 py-4 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${submitStatus === 'success'
+                  ? 'bg-green-500 text-white'
                   : submitStatus === 'error'
-                  ? 'bg-destructive text-destructive-foreground'
-                  : 'bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/30'
-              }`}
+                    ? 'bg-destructive text-destructive-foreground'
+                    : 'bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/30'
+                }`}
               data-cursor-hover
             >
               {submitStatus === 'success' ? (

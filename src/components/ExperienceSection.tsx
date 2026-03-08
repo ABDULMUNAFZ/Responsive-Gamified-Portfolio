@@ -50,7 +50,7 @@ const ExperienceSection = () => {
 
     // Title animation
     gsap.fromTo(title.children,
-      { opacity: 0, x: -100 },
+      { opacity: 0, x: -60 },
       {
         opacity: 1,
         x: 0,
@@ -60,7 +60,7 @@ const ExperienceSection = () => {
         scrollTrigger: {
           trigger: title,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -88,10 +88,10 @@ const ExperienceSection = () => {
     const cards = timeline.querySelectorAll('.exp-card');
     cards.forEach((card, i) => {
       const isLeft = i % 2 === 0;
-      
+
       gsap.fromTo(card,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           x: isLeft ? -100 : 100,
           scale: 0.9,
         },
@@ -104,7 +104,7 @@ const ExperienceSection = () => {
           scrollTrigger: {
             trigger: card,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -122,7 +122,7 @@ const ExperienceSection = () => {
             scrollTrigger: {
               trigger: card,
               start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              toggleActions: 'play none none none',
             },
           }
         );
@@ -142,7 +142,7 @@ const ExperienceSection = () => {
             scrollTrigger: {
               trigger: card,
               start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              toggleActions: 'play none none none',
             },
           }
         );
@@ -157,7 +157,7 @@ const ExperienceSection = () => {
           duration: 0.4,
           ease: 'power2.out',
         });
-        
+
         gsap.to(card.querySelector('.card-glow'), {
           opacity: 0.5,
           duration: 0.4,
@@ -172,7 +172,7 @@ const ExperienceSection = () => {
           duration: 0.4,
           ease: 'power2.out',
         });
-        
+
         gsap.to(card.querySelector('.card-glow'), {
           opacity: 0,
           duration: 0.4,
@@ -183,8 +183,8 @@ const ExperienceSection = () => {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="experience"
       className="relative py-32 overflow-hidden"
     >
@@ -212,11 +212,10 @@ const ExperienceSection = () => {
           {/* Experience Cards */}
           <div className="space-y-16">
             {experiences.map((exp, i) => (
-              <div 
+              <div
                 key={exp.company}
-                className={`exp-card relative flex flex-col lg:flex-row gap-8 ${
-                  i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
+                className={`exp-card relative flex flex-col lg:flex-row gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  }`}
               >
                 {/* Timeline Dot */}
                 <div className="timeline-dot-item absolute left-8 lg:left-1/2 top-8 w-4 h-4 -translate-x-1/2">
@@ -225,15 +224,14 @@ const ExperienceSection = () => {
                 </div>
 
                 {/* Content Card */}
-                <div 
-                  className={`ml-16 lg:ml-0 lg:w-[calc(50%-2rem)] ${
-                    i % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'
-                  }`}
+                <div
+                  className={`ml-16 lg:ml-0 lg:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'
+                    }`}
                 >
                   <div className="relative card-ember rounded-2xl p-6 overflow-hidden cursor-pointer">
                     {/* Glow Effect */}
                     <div className={`card-glow absolute inset-0 bg-gradient-to-br ${exp.color} opacity-0 transition-opacity duration-300`} />
-                    
+
                     <div className="relative z-10">
                       {/* Header */}
                       <div className="flex items-start justify-between mb-4">
@@ -269,7 +267,7 @@ const ExperienceSection = () => {
                       {/* Highlights */}
                       <div className="space-y-2">
                         {exp.highlights.map((highlight, j) => (
-                          <div 
+                          <div
                             key={j}
                             className="highlight-item flex items-center gap-2 text-sm"
                           >
@@ -283,7 +281,7 @@ const ExperienceSection = () => {
                 </div>
 
                 {/* Date Badge (opposite side) */}
-                <div className={`hidden lg:flex lg:w-[calc(50%-2rem)] items-start justify-${i % 2 === 0 ? 'start' : 'end'} pt-8`}>
+                <div className={`hidden lg:flex lg:w-[calc(50%-2rem)] items-start pt-8 ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                   <span className={`px-4 py-2 bg-gradient-to-r ${exp.color} text-background text-sm font-semibold rounded-full`}>
                     {exp.duration.split('–')[0].trim()}
                   </span>

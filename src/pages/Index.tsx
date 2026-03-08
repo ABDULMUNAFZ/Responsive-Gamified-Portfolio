@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 import LoadingScreen from '@/components/LoadingScreen';
 import CustomCursor from '@/components/CustomCursor';
 import MorphBackground from '@/components/MorphBackground';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
+import MiniGame from '@/components/MiniGame';
 import AboutSection from '@/components/AboutSection';
 import MarqueeSection from '@/components/MarqueeSection';
 import SkillsSection from '@/components/SkillsSection';
@@ -19,31 +19,18 @@ import Footer from '@/components/Footer';
 import useSmoothScroll from '@/hooks/useSmoothScroll';
 
 // Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Initialize smooth scroll with Lenis
   useSmoothScroll();
 
   useEffect(() => {
-    // Disable scroll during loading
-    if (isLoading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isLoading]);
-
-  useEffect(() => {
+    // Refresh ScrollTrigger once loading is done
     if (!isLoading) {
-      // Refresh ScrollTrigger after loading
-      ScrollTrigger.refresh();
+      setTimeout(() => ScrollTrigger.refresh(), 100);
     }
   }, [isLoading]);
 
@@ -68,6 +55,24 @@ const Index = () => {
         {/* Sections */}
         <main>
           <HeroSection />
+
+          {/* ── Mini Game Section ─────────────────────── */}
+          <section className="relative py-16 px-6">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-6">
+                <p className="text-xs font-bold tracking-widest uppercase mb-1" style={{ color: '#66BCB4' }}>🎮 Mini Game</p>
+                <h2 className="text-2xl font-display font-bold" style={{ color: '#EC802B' }}>Space Runner</h2>
+                <p className="text-sm mt-1" style={{ color: '#66BCB4' }}>Press Space / Arrow Up or Tap to jump — dodge the meteors!</p>
+              </div>
+              <div
+                className="w-full rounded-2xl overflow-hidden"
+                style={{ height: 'clamp(220px, 32vw, 340px)' }}
+              >
+                <MiniGame />
+              </div>
+            </div>
+          </section>
+
           <AboutSection />
           <MarqueeSection />
           <SkillsSection />

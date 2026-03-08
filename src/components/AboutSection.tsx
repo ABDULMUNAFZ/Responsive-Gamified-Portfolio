@@ -6,7 +6,7 @@ import { GraduationCap, MapPin, Briefcase, Languages, Award } from 'lucide-react
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: '2+', label: 'Years Experience', icon: Briefcase },
+  { value: '8', label: 'Months Experience', icon: Briefcase },
   { value: '5+', label: 'Hackathon Wins', icon: Award },
   { value: '3+', label: 'Live Projects', icon: MapPin },
   { value: '4', label: 'Languages', icon: Languages },
@@ -35,17 +35,16 @@ const AboutSection = () => {
 
     // Title animation
     gsap.fromTo(title,
-      { opacity: 0, y: 100, skewY: 5 },
+      { opacity: 0, y: 60 },
       {
         opacity: 1,
         y: 0,
-        skewY: 0,
         duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: title,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -54,7 +53,7 @@ const AboutSection = () => {
     const paragraphs = content.querySelectorAll('p');
     paragraphs.forEach((p, i) => {
       gsap.fromTo(p,
-        { opacity: 0, x: i % 2 === 0 ? -80 : 80 },
+        { opacity: 0, x: i % 2 === 0 ? -40 : 40 },
         {
           opacity: 1,
           x: 0,
@@ -62,8 +61,8 @@ const AboutSection = () => {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: p,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            start: 'top 90%',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -73,19 +72,18 @@ const AboutSection = () => {
     const statItems = statsContainer.querySelectorAll('.stat-item');
     statItems.forEach((item, i) => {
       gsap.fromTo(item,
-        { opacity: 0, y: 60, scale: 0.8, rotateX: -30 },
+        { opacity: 0, y: 40, scale: 0.9 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          rotateX: 0,
           duration: 0.8,
           delay: i * 0.15,
           ease: 'back.out(1.7)',
           scrollTrigger: {
             trigger: statsContainer,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -95,7 +93,7 @@ const AboutSection = () => {
       if (valueEl) {
         const value = valueEl.textContent || '0';
         const numValue = parseInt(value);
-        
+
         if (!isNaN(numValue)) {
           gsap.fromTo({ val: 0 },
             { val: 0 },
@@ -108,7 +106,7 @@ const AboutSection = () => {
                 start: 'top 80%',
                 toggleActions: 'play none none none',
               },
-              onUpdate: function() {
+              onUpdate: function () {
                 valueEl.textContent = Math.floor(this.targets()[0].val) + '+';
               }
             }
@@ -121,21 +119,19 @@ const AboutSection = () => {
     const cardElements = cards.querySelectorAll('.edu-card');
     cardElements.forEach((card, i) => {
       gsap.fromTo(card,
-        { 
-          opacity: 0, 
-          x: i % 2 === 0 ? -100 : 100,
-          rotateY: i % 2 === 0 ? -20 : 20,
+        {
+          opacity: 0,
+          x: i % 2 === 0 ? -60 : 60,
         },
         {
           opacity: 1,
           x: 0,
-          rotateY: 0,
           duration: 1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: card,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -179,8 +175,8 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="about"
       className="relative py-32 overflow-hidden"
     >
@@ -192,7 +188,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-6">
         {/* Section Title */}
         <div className="mb-20">
-          <h2 
+          <h2
             ref={titleRef}
             className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4"
           >
@@ -205,21 +201,21 @@ const AboutSection = () => {
           {/* Content */}
           <div ref={contentRef} className="space-y-6">
             <p className="text-lg text-foreground/90 leading-relaxed">
-              I'm a passionate <span className="text-primary font-semibold">Front-End Developer</span> with 
-              expertise in React.js, TypeScript, Python, and Machine Learning. My journey in tech has been 
+              I'm a passionate <span className="text-primary font-semibold">Front-End Developer</span> with
+              expertise in React.js, TypeScript, Python, and Machine Learning. My journey in tech has been
               driven by a constant curiosity to build innovative solutions that make a real impact.
             </p>
-            
+
             <p className="text-lg text-foreground/80 leading-relaxed">
-              With hands-on experience from my internships at <span className="text-primary">Cybernault Edutech</span> and 
-              <span className="text-primary"> Mealzy</span>, I've developed scalable, user-focused applications 
-              that solve real-world problems. From full-stack chatting platforms with sentiment analysis to 
+              With hands-on experience from my internships at <span className="text-primary">Cybernault Edutech</span> and
+              <span className="text-primary"> Mealzy</span>, I've developed scalable, user-focused applications
+              that solve real-world problems. From full-stack chatting platforms with sentiment analysis to
               live client websites, I bring ideas to life.
             </p>
 
             <p className="text-lg text-foreground/80 leading-relaxed">
-              Currently pursuing my Master's at Sri Krishna Arts and Science College, Coimbatore, I continue 
-              to push boundaries in web development and AI/ML, participating in hackathons and building 
+              Currently pursuing my Master's at Sri Krishna Arts and Science College, Coimbatore, I continue
+              to push boundaries in web development and AI/ML, participating in hackathons and building
               projects that challenge conventional thinking.
             </p>
 
@@ -231,7 +227,7 @@ const AboutSection = () => {
               </h3>
               <div className="flex flex-wrap gap-3">
                 {['English', 'Tamil', 'Hindi', 'Urdu'].map((lang, i) => (
-                  <span 
+                  <span
                     key={lang}
                     className="px-4 py-2 bg-card border border-border/50 rounded-full text-sm text-foreground/80 hover:border-primary hover:text-primary transition-all duration-300"
                   >
@@ -247,7 +243,7 @@ const AboutSection = () => {
             {/* Stats Grid */}
             <div ref={statsRef} className="grid grid-cols-2 gap-4">
               {stats.map((stat, i) => (
-                <div 
+                <div
                   key={stat.label}
                   className="stat-item card-glass rounded-2xl p-6 perspective-1000"
                 >
@@ -271,7 +267,7 @@ const AboutSection = () => {
                 Education
               </h3>
               {education.map((edu, i) => (
-                <div 
+                <div
                   key={edu.degree}
                   className="edu-card card-ember rounded-2xl p-6 perspective-1000 cursor-pointer"
                 >

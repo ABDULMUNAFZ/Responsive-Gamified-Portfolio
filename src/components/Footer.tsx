@@ -17,7 +17,7 @@ const Footer = () => {
 
     // Footer reveal animation
     gsap.fromTo(footer,
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
@@ -26,7 +26,7 @@ const Footer = () => {
         scrollTrigger: {
           trigger: footer,
           start: 'top 95%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -34,11 +34,7 @@ const Footer = () => {
   }, []);
 
   const scrollToTop = () => {
-    gsap.to(window, {
-      duration: 1.5,
-      scrollTo: { y: 0 },
-      ease: 'power3.inOut',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -48,7 +44,7 @@ const Footer = () => {
         <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite]">
           {[...Array(4)].map((_, i) => (
             <span key={i} className="text-6xl md:text-8xl font-display font-bold text-foreground/5 mx-8">
-              ABDUL MUNAF • FRONTEND DEVELOPER • REACT • TYPESCRIPT • 
+              ABDUL MUNAF • FRONTEND DEVELOPER • REACT • TYPESCRIPT •
             </span>
           ))}
         </div>
@@ -63,17 +59,17 @@ const Footer = () => {
               <span className="text-3xl font-display font-light text-foreground">.dev</span>
             </a>
             <p className="text-sm text-foreground/50 text-center md:text-left">
-  Developed by{' '}
-  <a
-    href="https://linkedin.com/in/abdul-munaf-z-6380a8251"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-primary hover:underline inline-flex items-center gap-1"
-    data-cursor-hover
-  >
-    Abdul Munaf <ExternalLink size={12} />
-  </a>
-</p>
+              Developed by{' '}
+              <a
+                href="https://linkedin.com/in/abdul-munaf-z-6380a8251"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline inline-flex items-center gap-1"
+                data-cursor-hover
+              >
+                Abdul Munaf <ExternalLink size={12} />
+              </a>
+            </p>
 
             <p className="text-xs text-foreground/30 mt-1">
               © 2026 All rights reserved.
@@ -88,11 +84,8 @@ const Footer = () => {
                 href={`#${link.toLowerCase()}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  gsap.to(window, {
-                    duration: 1.5,
-                    scrollTo: { y: `#${link.toLowerCase()}`, offsetY: 80 },
-                    ease: 'power3.inOut',
-                  });
+                  const target = document.querySelector(`#${link.toLowerCase()}`);
+                  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
                 className="text-foreground/60 hover:text-primary transition-colors"
                 data-cursor-hover
@@ -129,10 +122,10 @@ const Footer = () => {
             >
               <Mail size={18} />
             </a>
-            
+
             {/* Divider */}
             <div className="w-px h-8 bg-border/50 mx-2" />
-            
+
             {/* Back to Top */}
             <button
               onClick={scrollToTop}

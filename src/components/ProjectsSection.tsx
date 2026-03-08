@@ -62,18 +62,17 @@ const ProjectsSection = () => {
 
     // Title animation
     gsap.fromTo(title.children,
-      { opacity: 0, y: 100, rotateX: -45 },
+      { opacity: 0, y: 60 },
       {
         opacity: 1,
         y: 0,
-        rotateX: 0,
         duration: 1,
         stagger: 0.2,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: title,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -82,24 +81,22 @@ const ProjectsSection = () => {
     const cards = container.querySelectorAll('.project-card');
     cards.forEach((card, i) => {
       gsap.fromTo(card,
-        { 
-          opacity: 0, 
-          y: 100,
-          scale: 0.9,
-          rotateY: -15,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          rotateY: 0,
           duration: 0.8,
           delay: i * 0.15,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: container,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -109,26 +106,20 @@ const ProjectsSection = () => {
 
   const handleCardHover = (e: React.MouseEvent<HTMLDivElement>, entering: boolean) => {
     const card = e.currentTarget;
-    const overlay = card.querySelector('.card-overlay');
-    const content = card.querySelector('.card-content');
     const icon = card.querySelector('.card-icon');
 
     if (entering) {
-      gsap.to(overlay, { opacity: 1, duration: 0.4 });
-      gsap.to(content, { y: 0, opacity: 1, duration: 0.4 });
-      gsap.to(icon, { scale: 1.2, rotate: 360, duration: 0.6, ease: 'back.out(1.7)' });
-      gsap.to(card, { scale: 1.02, y: -10, duration: 0.4 });
+      gsap.to(icon, { scale: 1.15, duration: 0.4, ease: 'back.out(1.7)' });
+      gsap.to(card, { scale: 1.02, y: -8, duration: 0.35 });
     } else {
-      gsap.to(overlay, { opacity: 0, duration: 0.4 });
-      gsap.to(content, { y: 20, opacity: 0.8, duration: 0.4 });
-      gsap.to(icon, { scale: 1, rotate: 0, duration: 0.4 });
-      gsap.to(card, { scale: 1, y: 0, duration: 0.4 });
+      gsap.to(icon, { scale: 1, duration: 0.35 });
+      gsap.to(card, { scale: 1, y: 0, duration: 0.35 });
     }
   };
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="projects"
       className="relative py-32 overflow-hidden"
     >
@@ -159,12 +150,10 @@ const ProjectsSection = () => {
             >
               {/* Background Gradient */}
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
-              
+
               {/* Card Content */}
               <div className="relative p-8 min-h-[400px] flex flex-col card-glass">
-                {/* Overlay */}
-                <div className="card-overlay absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0" />
-                
+
                 {/* Icon */}
                 <div className="card-icon icon-container mb-6 relative z-10">
                   <project.icon size={28} className="text-primary" />
@@ -179,14 +168,14 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Description */}
-                <p className="card-content text-foreground/70 mb-6 leading-relaxed relative z-10 flex-grow opacity-80">
+                <p className="text-foreground/80 mb-6 leading-relaxed relative z-10 flex-grow">
                   {project.description}
                 </p>
 
                 {/* Features */}
                 <div className="flex flex-wrap gap-2 mb-6 relative z-10">
                   {project.features.map((feature) => (
-                    <span 
+                    <span
                       key={feature}
                       className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
                     >
@@ -198,7 +187,7 @@ const ProjectsSection = () => {
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-6 relative z-10">
                   {project.tech.map((tech) => (
-                    <span 
+                    <span
                       key={tech}
                       className="px-3 py-1 text-xs bg-muted text-foreground/60 rounded-full"
                     >
@@ -224,8 +213,8 @@ const ProjectsSection = () => {
                 )}
 
                 {/* Decorative Corner */}
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${project.gradient} opacity-10`} 
-                     style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }} />
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${project.gradient} opacity-10`}
+                  style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }} />
               </div>
             </div>
           ))}

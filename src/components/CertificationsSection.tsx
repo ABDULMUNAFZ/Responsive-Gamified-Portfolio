@@ -87,13 +87,13 @@ const StackedCertificates = () => {
 
   return (
     <>
-      <div className="relative h-[400px] flex items-center justify-center">
-        <div ref={stackRef} className="relative w-80 h-80">
+      <div className="relative h-[420px] flex items-center justify-center">
+        <div ref={stackRef} className="relative w-[480px] h-[340px]">
           {certificates.map((cert, index) => {
             const offset = index - activeIndex;
             const isActive = index === activeIndex;
             const zIndex = certificates.length - Math.abs(offset);
-            
+
             // Show only 5 cards around active
             if (Math.abs(offset) > 2) return null;
 
@@ -113,9 +113,8 @@ const StackedCertificates = () => {
                   opacity: 1 - Math.abs(offset) * 0.2,
                 }}
               >
-                <div className={`w-full h-full rounded-2xl overflow-hidden border-2 ${
-                  isActive ? 'border-primary shadow-2xl shadow-primary/20' : 'border-border/50'
-                } bg-card transition-all duration-300`}>
+                <div className={`w-full h-full rounded-2xl overflow-hidden border-2 ${isActive ? 'border-primary shadow-2xl shadow-primary/20' : 'border-border/50'
+                  } bg-card transition-all duration-300`}>
                   <img
                     src={cert.image}
                     alt={cert.name}
@@ -158,16 +157,15 @@ const StackedCertificates = () => {
           <button
             key={i}
             onClick={() => setActiveIndex(i)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === activeIndex ? 'bg-primary w-6' : 'bg-foreground/20 hover:bg-foreground/40'
-            }`}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-primary w-6' : 'bg-foreground/20 hover:bg-foreground/40'
+              }`}
           />
         ))}
       </div>
 
       {/* Expanded Modal */}
       {isExpanded && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-background/90 backdrop-blur-xl flex items-center justify-center p-4"
           onClick={() => setIsExpanded(false)}
         >
@@ -245,7 +243,7 @@ const HackathonCard = ({ achievement }: { achievement: typeof achievements[0] })
     >
       {/* Image Carousel */}
       <div className="relative h-48 overflow-hidden">
-        <div 
+        <div
           className="flex transition-transform duration-500 ease-out h-full"
           style={{ transform: `translateX(-${currentImage * 100}%)` }}
         >
@@ -285,24 +283,22 @@ const HackathonCard = ({ achievement }: { achievement: typeof achievements[0] })
                 e.stopPropagation();
                 setCurrentImage(i);
               }}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                i === currentImage ? 'bg-primary w-4' : 'bg-white/50'
-              }`}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${i === currentImage ? 'bg-primary w-4' : 'bg-white/50'
+                }`}
             />
           ))}
         </div>
 
         {/* Position Badge */}
         <div className="absolute top-3 left-3">
-          <span className={`px-3 py-1 text-xs font-bold rounded-full ${
-            achievement.position === '1st Place' 
-              ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black'
-              : achievement.position === '2nd Place'
+          <span className={`px-3 py-1 text-xs font-bold rounded-full ${achievement.position === '1st Place'
+            ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black'
+            : achievement.position === '2nd Place'
               ? 'bg-gradient-to-r from-gray-300 to-gray-400 text-black'
               : achievement.position === '3rd Place'
-              ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white'
-              : 'bg-gradient-to-r from-primary to-gradient-orange text-white'
-          }`}>
+                ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white'
+                : 'bg-gradient-to-r from-primary to-gradient-orange text-white'
+            }`}>
             {achievement.position}
           </span>
         </div>
@@ -318,24 +314,22 @@ const HackathonCard = ({ achievement }: { achievement: typeof achievements[0] })
       {/* Content */}
       <div className="p-5">
         <div className="flex items-start gap-3 mb-3">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-            achievement.position === '1st Place' 
-              ? 'bg-yellow-500/20'
-              : achievement.position === '2nd Place'
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${achievement.position === '1st Place'
+            ? 'bg-yellow-500/20'
+            : achievement.position === '2nd Place'
               ? 'bg-gray-400/20'
               : achievement.position === '3rd Place'
-              ? 'bg-amber-600/20'
-              : 'bg-primary/20'
-          }`}>
-            <achievement.icon size={20} className={`${
-              achievement.position === '1st Place' 
-                ? 'text-yellow-500'
-                : achievement.position === '2nd Place'
+                ? 'bg-amber-600/20'
+                : 'bg-primary/20'
+            }`}>
+            <achievement.icon size={20} className={`${achievement.position === '1st Place'
+              ? 'text-yellow-500'
+              : achievement.position === '2nd Place'
                 ? 'text-gray-400'
                 : achievement.position === '3rd Place'
-                ? 'text-amber-600'
-                : 'text-primary'
-            }`} />
+                  ? 'text-amber-600'
+                  : 'text-primary'
+              }`} />
           </div>
           <div className="flex-1">
             <h4 className="text-base font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
@@ -377,7 +371,7 @@ const CertificationsSection = () => {
         scrollTrigger: {
           trigger: title,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -393,7 +387,7 @@ const CertificationsSection = () => {
         scrollTrigger: {
           trigger: certs,
           start: 'top 85%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       }
     );
@@ -402,8 +396,8 @@ const CertificationsSection = () => {
     const achievementCards = achievementsContainer.querySelectorAll('.achievement-card');
     achievementCards.forEach((card, i) => {
       gsap.fromTo(card,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 60,
           scale: 0.95,
         },
@@ -417,7 +411,7 @@ const CertificationsSection = () => {
           scrollTrigger: {
             trigger: card,
             start: 'top 90%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none none none',
           },
         }
       );
@@ -426,8 +420,8 @@ const CertificationsSection = () => {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="certifications"
       className="relative py-32 overflow-hidden"
     >
